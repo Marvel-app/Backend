@@ -10,7 +10,10 @@ const createUserSchema = {
     email: emailSchema.required(),
     password: passwordSchema.required()
 };
-
+const logginSchema = {
+    name: firstNameSchema.required(),
+    password: passwordSchema.required()
+}
 const updateUserSchema = {
     name: firstNameSchema,
     email: emailSchema,
@@ -18,6 +21,7 @@ const updateUserSchema = {
 }
 
 module.exports = {
+    logginSchema,
     userIdSchema, 
     createUserSchema,
     updateUserSchema,
