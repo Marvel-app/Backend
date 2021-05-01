@@ -11,6 +11,10 @@ const userSchema = new Schema({
         name: String,
         description: String,
     }],
+    login_type: {
+        type: String,
+        default: "Local"
+    }
 
 
 },{
