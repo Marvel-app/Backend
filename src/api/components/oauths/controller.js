@@ -50,12 +50,12 @@ const getTokens = async (code) => {
 }
 
 const validateUser = async (userData) => {
-
+    
     let filterEmail = {
         email: userData.email
     }
     const existsUser = await store.getUserByFilter(filterEmail);
-    if (existsUser.length > 0 && existsUser.login_type !== 'Google') {
+    if (existsUser.length > 0 && existsUser[0].login_type !== 'Google') {
         throw boom.badData('You must login with the normal login form!');
     }
     if (existsUser.length === 0 ) {
@@ -69,7 +69,7 @@ const validateUser = async (userData) => {
         const token = createToken(addedUser);
         return token
     } else {
-        const token = createToken(existsUser);
+        const token = createToken(existsUser[0]);
         return token
     }
 

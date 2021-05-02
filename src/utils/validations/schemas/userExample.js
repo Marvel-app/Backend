@@ -6,12 +6,15 @@ const emailSchema = joi.string().max(80).regex(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\
 const passwordSchema = joi.string().min(8).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/).message('Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number');
 
 const createUserSchema = {
-    name: firstNameSchema.required(),
+    username: firstNameSchema.required(),
     email: emailSchema.required(),
     password: passwordSchema.required()
 };
+const userSchema = {
+    name: firstNameSchema.required()
+}
 const logginSchema = {
-    name: firstNameSchema.required(),
+    username: firstNameSchema.required(),
     password: passwordSchema.required()
 }
 const updateUserSchema = {
@@ -21,6 +24,7 @@ const updateUserSchema = {
 }
 
 module.exports = {
+    userSchema,
     logginSchema,
     userIdSchema, 
     createUserSchema,

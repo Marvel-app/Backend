@@ -7,6 +7,7 @@ class Store{
 
     async createUser(user){
         const created = await this.model.create(user)
+        created.save()
         return created
     }
 
@@ -24,6 +25,18 @@ class Store{
     async getUserByFilter(filter){
         const user = await this.model.find(filter)
         return user
+    }
+
+    async getUserByID(id){
+        const user = await this.model.findById(id)
+        return user
+
+    }
+    
+
+    async updateUser(filter,update){
+        await this.model.findOneAndUpdate(filter, update, {new: true});
+        return 'Comic added to your favorites'
     }
 }
 
