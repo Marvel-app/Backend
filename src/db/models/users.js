@@ -10,6 +10,7 @@ const userSchema = new Schema({
     favs: [{
         name: String,
         description: String,
+        image: String,
     }],
     login_type: {
         type: String,

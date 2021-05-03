@@ -1,6 +1,8 @@
 require('dotenv').config();
 
 const config = {
+
+	CREDENTIALS: `apikey=${process.env.apikey}&hash=${process.env.hash}&ts=${process.env.ts}`,
 	GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
 	GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
 	GOOGLE_ACCESS_TOKEN_URL: process.env.GOOGLE_ACCESS_TOKEN_URL,

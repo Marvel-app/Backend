@@ -66,6 +66,7 @@ class Controller{
         if(!validateUserID) throw boom.conflict("User not found");
 
         const userComp = await this.store.getUserByID(userData.sub)
+        
         return userComp.favs
 
     }
