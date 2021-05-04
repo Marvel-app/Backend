@@ -17,7 +17,7 @@ router.post('/register',validationHandler(createUserSchema),async (req, res, nex
     }
 })
 
-router.post('/loggin',validationHandler(logginSchema), async(req, res, next) => {
+router.post('/login',validationHandler(logginSchema), async(req, res, next) => {
     try {
         const jwt = await Controller.validatedUser(req.body)
         res.status(200).json({

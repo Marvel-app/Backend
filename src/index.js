@@ -11,13 +11,17 @@ const {
 } = require('./utils/middlewares/errorHandlers');
 const notFoundHandler = require('./utils/middlewares/notFound');
 
+var corsOptions = {
+    origin: 'http://localhost:3000',
+  }
+
 //  Server configs
 const { config } = require('./config/index');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(helmet());
 if (config.dev) {
     const morgan = require('morgan');
@@ -41,3 +45,5 @@ app.use(errorHandler);
 app.listen(config.port, () => {
     console.log(`Listening on: http://localhost:${config.port}`);
 })
+
+module.exports = app

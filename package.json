@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "DEBUG=app:* nodemon src/index",
-    "start": "NODE_ENV=production node src/index"
+    "start": "NODE_ENV=production node src/index",
+    "test": "mocha ./tests --timeout 100000"
   },
   "repository": {
     "type": "git",
@@ -22,12 +23,15 @@
     "@hapi/boom": "^9.1.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.2.0",
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.3.2",
     "mongoose": "^5.10.15",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0"

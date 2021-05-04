@@ -24,7 +24,7 @@ class Store{
 
     async getUserByFilter(filter){
         const user = await this.model.find(filter)
-        return user
+        return user[0]
     }
 
     async getUserByID(id){

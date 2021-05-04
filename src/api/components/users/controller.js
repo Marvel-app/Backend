@@ -40,19 +40,14 @@ class Controller{
 
     async validatedUser(user){
 
-        const validateUserEmail = await this.store.validateUserByFilter({email: user.email})
-        if(!validateUserEmail) throw boom.conflict("User not found");
+        const validateUserUsername = await this.store.validateUserByFilter({username: user.username})
+        if(!validateUserUsername) throw boom.conflict("User not found");
 
-        const userComp = await this.store.getUserByFilter({email: user.email})
+        const userComp = await this.store.getUserByFilter({username: user.username})
 
-        const hashedPassword = await new Promise((resolve, reject) => {
-            bcrypt.hash(user.password, 10, (err, hash) => {
-                if(err) reject(boom.internal(err));
-                resolve(hash);
-            })
-        })
+        const result = await bcrypt.compare(user.password, userComp.password)
 
-        if(hashedPassword === userComp.password){
+        if(result){
             const jwt = token({sub: userComp._id, username: userComp.username, email: userComp.email})
             return jwt
         }else{
