@@ -8,9 +8,13 @@ const userSchema = new Schema({
     },
     password: String,
     favs: [{
-        name: String,
+        title: String,
         description: String,
         image: String,
+        publish: String,
+        coverArtist: String,
+        penciler: String,
+        writer: String
     }],
     login_type: {
         type: String,
