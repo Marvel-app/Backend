@@ -1,7 +1,7 @@
 const querystring = require('querystring');
 const axios = require('axios');
 const { config } = require('../../../config/index');
-const BASE_URL = "https://marvelappplatzimaster.herokuapp.com/";
+const BASE_URL = "https://marvelappplatzimaster.herokuapp.com";
 const boom = require('@hapi/boom')
 const storeUser = require("./store")
 const store = new storeUser
