@@ -43,7 +43,7 @@ router.get('/favorites',checkJWT, async (req, res, next) => {
 router.post('/favorites',checkJWT, async (req, res, next) => {
     try {
         const _id = req.userData.sub;
-        const fav = req.body.fav;
+        const fav = req.body;
         const added = await Controller.addFavorites(_id,fav)
         res.status(200).json({
             added

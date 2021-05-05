@@ -48,7 +48,7 @@ class Controller{
         const result = await bcrypt.compare(user.password, userComp.password)
 
         if(result){
-            const jwt = token({sub: userComp._id, username: userComp.username, email: userComp.email})
+            const jwt = token(userComp)
             return jwt
         }else{
             throw boom.conflict("Password does not match");
@@ -73,7 +73,7 @@ class Controller{
         const userComp = await this.store.getUserByID(_id)
 
         userComp.favs.forEach(element => {
-            if(element.name === fav.name){
+            if(element.title === fav.title){
                 throw boom.conflict("This comic is already in your favorites"); 
             }
         });
