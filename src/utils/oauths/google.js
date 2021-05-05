@@ -1,6 +1,6 @@
   
 const querystring = require('querystring')
-const CORS_ORIGIN = "https://marvelappplatzimaster.herokuapp.com/";
+const CORS_ORIGIN = "https://marvelappplatzimaster.herokuapp.com";
 const { config } = require('../../config/index');
 
 function getGoogleAuthURL() {
