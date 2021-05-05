@@ -74,6 +74,64 @@ class Controller{
         return data
     
     }
+
+    async getRandomsComics(){
+        const offset = Math.floor(Math.random() * 10000);
+
+        const response = await axios.get(`https://gateway.marvel.com:443/v1/public/comics?format=comic&limit=10&offset=${offset}&${config.CREDENTIALS}`)
+
+        const comicsPrueba = response.data.data.results
+
+        let comicsArray = []
+            
+        comicsPrueba.forEach(element =>{
+            
+            let coverArtist = ''
+            let penciler = ''
+            let writer = ''
+            let image = ''
+            if(element.creators.available > 0){
+                
+                element.creators.items.forEach(creator => {
+
+                    if( creator.role === 'penciller (cover)'){
+                        coverArtist = creator.name
+                    }
+                    if( creator.role === 'penciller'){
+                        penciler = creator.name
+                    }
+                    if( creator.role === 'writer'){
+                        writer = creator.name
+                    }
+
+
+                })
+
+            }
+            if(element.images.length === 1){
+                image = `${element.images[0].path}.${element.images[0].extension}`
+            }
+            const comicInfo = {
+                title: `${element.title}`,
+                description: `${element.description}`,
+                image,
+                publish: `${element.dates[0].date}`,
+                coverArtist,
+                penciler,
+                writer
+            }
+            comicsArray.push(comicInfo);
+
+        });
+
+
+        const data = {
+            comicsArray
+        }
+
+        return data
+    
+    }
     
 }
 
