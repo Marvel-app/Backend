@@ -23,7 +23,7 @@ router.get('/',checkJWT, async (req, res, next) => {
 
 router.get('/randoms',checkJWT, async (req, res, next) => {
     try {
-        const {numberComics} = req.params
+        const { numberComics } = req.query
         const info = await Controller.getRandomsComics(numberComics)
         res.status(200).json({
             ...info

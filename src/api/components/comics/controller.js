@@ -79,7 +79,6 @@ class Controller{
         const offset = Math.floor(Math.random() * 10000);
         const limit = parseInt(numberComics) 
         const response = await axios.get(`https://gateway.marvel.com:443/v1/public/comics?format=comic&limit=${limit}&offset=${offset}&${config.CREDENTIALS}`)
-
         const comicsPrueba = response.data.data.results
 
         let comicsArray = []
