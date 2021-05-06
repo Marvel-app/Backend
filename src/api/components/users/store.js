@@ -12,9 +12,6 @@ class Store{
     }
 
     async validateUserByName(filter){
-        console.log("############")
-        console.log(filter)
-        console.log("############")
         const user = await this.model.find(filter)
 
         if(user[0]){
