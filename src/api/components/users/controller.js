@@ -20,10 +20,10 @@ class Controller{
             })
         })
         
-        const validateUserName = await this.store.validateUserByFilter({username: userName})
+        const validateUserName = await this.store.validateUserByName({username: userName})
         if(validateUserName) throw boom.conflict("A user with this username already exists");
 
-        const validateUserEmail =  await this.store.validateUserByFilter({email: userEmail})
+        const validateUserEmail =  await this.store.validateUserByEmail({email: userEmail})
         if(validateUserEmail) throw boom.conflict("A user with this email already exists");
 
         const User = {
@@ -40,10 +40,10 @@ class Controller{
 
     async validatedUser(user){
 
-        const validateUserUsername = await this.store.validateUserByFilter({username: user.username})
+        const validateUserUsername = await this.store.validateUserByName({username: user.username})
         if(!validateUserUsername) throw boom.conflict("User not found");
 
-        const userComp = await this.store.getUserByFilter({username: user.username})
+        const userComp = await this.store.getUserByName({username: user.username})
 
         const result = await bcrypt.compare(user.password, userComp.password)
 
@@ -57,7 +57,7 @@ class Controller{
     }
 
     async getFavorites(userData){
-        const validateUserID = await this.store.validateUserByFilter({_id: userData.sub})
+        const validateUserID = await this.store.validateUserByID({_id: userData.sub})
         if(!validateUserID) throw boom.conflict("User not found");
 
         const userComp = await this.store.getUserByID(userData.sub)
@@ -67,7 +67,7 @@ class Controller{
     }
 
     async addFavorites(_id,fav){
-        const validateUserID = await this.store.validateUserByFilter({_id: _id})
+        const validateUserID = await this.store.validateUserByID({_id: _id})
         if(!validateUserID) throw boom.conflict("User not found");
 
         const userComp = await this.store.getUserByID(_id)

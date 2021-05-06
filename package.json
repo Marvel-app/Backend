@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "DEBUG=app:* nodemon src/index",
     "start": "NODE_ENV=production node src/index",
-    "test": "mocha ./tests --timeout 100000"
+    "test": "mocha ./tests --timeout 100000",
+    "unittest": "jest ./test/unit"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.2.0",
+    "jest": "^26.6.3",
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^8.3.2",

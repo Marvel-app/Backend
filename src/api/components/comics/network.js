@@ -11,7 +11,8 @@ const checkJWT = require('../../../utils/middlewares/auth/checkJwt')
 router.get('/',checkJWT, async (req, res, next) => {
     try {
         const { heroname } = req.query
-        const info = await Controller.getComicsByName(heroname)
+        const { numberComics } = req.query
+        const info = await Controller.getComicsByName(heroname,numberComics)
         res.status(200).json({
             ...info
         });

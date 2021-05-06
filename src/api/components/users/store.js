@@ -11,7 +11,7 @@ class Store{
         return created
     }
 
-    async validateUserByFilter(filter){
+    async validateUserByName(filter){
         const user = await this.model.find(filter)
 
         if(user[0]){
@@ -22,7 +22,29 @@ class Store{
 
     }
 
-    async getUserByFilter(filter){
+    async validateUserByEmail(filter){
+        const user = await this.model.find(filter)
+
+        if(user[0]){
+            return true
+        }else{
+            return false
+        }
+
+    }
+
+    async validateUserByID(filter){
+        const user = await this.model.find(filter)
+
+        if(user[0]){
+            return true
+        }else{
+            return false
+        }
+
+    }
+
+    async getUserByName(filter){
         const user = await this.model.find(filter)
         return user[0]
     }
@@ -38,6 +60,7 @@ class Store{
         await this.model.findOneAndUpdate(filter, update, {new: true});
         return 'Comic added to your favorites'
     }
+
 }
 
 module.exports = Store
