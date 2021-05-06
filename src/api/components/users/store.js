@@ -6,7 +6,7 @@ class Store{
     }
 
     async createUser(user){
-        const created = await this.model.create(user)
+        const created = await this.model.create(user)   
         created.save()
         return created
     }

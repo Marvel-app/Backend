@@ -8,6 +8,7 @@ function getGoogleAuthURL() {
     
     const options = {
         redirect_uri: `${CORS_ORIGIN}/api/oauth/register`,
+        //redirect_uri: `http://localhost:3000/api/oauth/register`,
         client_id: config.GOOGLE_CLIENT_ID,
         access_type: 'offline',
         response_type: 'code',

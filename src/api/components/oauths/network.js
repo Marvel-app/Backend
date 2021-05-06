@@ -17,10 +17,9 @@ router.get('/register', async (req, res, next) => {
     try {
         const userData = await controller.getTokens(req.query.code);
         const token = await controller.validateUser(userData)
-        res.redirect('https://marvelapp-frontend.vercel.app/home')
-        res.status(200).json({
-            jwt: token
-        })
+        const routeFrontend = 'https://marvelapp-frontend.vercel.app/home';
+        const finalUrl = `${routeFrontend}?jwt=${token}`
+        res.redirect(finalUrl)
     } catch (error) {
         next(error)
     }
