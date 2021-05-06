@@ -225,7 +225,7 @@ Backend made with Express.
 }
 ```
 
-### Get comics of a given hero
+### Get random comics
 
 **method**: GET
 
@@ -233,7 +233,7 @@ Backend made with Express.
 
 **Athorization Bearer Token**: jwt
 
-**Param**: limit = number of comics that you want to get
+**Param**: numberComics = number of comics that you want to get
 
 **Status code**: 200
 
