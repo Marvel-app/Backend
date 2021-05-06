@@ -4,7 +4,8 @@ class Store{
     constructor(){
     }
 
-     createUser(user){
+    async createUser(user){
+ 
         user._id = randstring(10)
         mockDB.push(user)
         return user

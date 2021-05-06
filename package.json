@@ -7,7 +7,7 @@
     "dev": "DEBUG=app:* nodemon src/index",
     "start": "NODE_ENV=production node src/index",
     "test": "mocha ./tests --timeout 100000",
-    "unittest": "jest ./test/unit"
+    "unittest": "jest ./test/unit/"
   },
   "repository": {
     "type": "git",

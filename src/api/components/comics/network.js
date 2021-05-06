@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('./controller');
 const Controller = new UserController;
-//const {logginSchema, createUserSchema, userSchema} = require('../../../utils/validations/schemas/userExample'); // eslint-disable-line
-//const validationHandler = require('../../../utils/middlewares/validationHandler');
 const checkJWT = require('../../../utils/middlewares/auth/checkJwt')
 
 

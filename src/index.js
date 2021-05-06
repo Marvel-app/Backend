@@ -12,7 +12,7 @@ const {
 const notFoundHandler = require('./utils/middlewares/notFound');
 
 var corsOptions = {
-    origin: ['http://localhost:3000','https://marvelappplatzimaster.herokuapp.com'],
+    origin: ['http://localhost:3000','https://marvelappplatzimaster.herokuapp.com','https://marvelapp-frontend.vercel.app'],
   }
 
 //  Server configs

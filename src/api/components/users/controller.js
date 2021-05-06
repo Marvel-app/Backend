@@ -22,7 +22,7 @@ class Controller{
         
         const validateUserName = await this.store.validateUserByName({username: userName})
         if(validateUserName) throw boom.conflict("A user with this username already exists");
-
+        
         const validateUserEmail =  await this.store.validateUserByEmail({email: userEmail})
         if(validateUserEmail) throw boom.conflict("A user with this email already exists");
 
@@ -34,7 +34,7 @@ class Controller{
 
         const userCrated = await this.store.createUser(User)
         if(!userCrated) throw boom.conflict("There was a problem creating your user");
-
+        
         return 'User created'
     }
 
