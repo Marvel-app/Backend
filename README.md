@@ -72,6 +72,18 @@ Backend made with Express.
     "password" String
 }
 ```
+**Posible errors**: 
+
+**400**
+
+if any of the three elements is missing or the info doesn't match the regex
+
+**409**
+
+If the username or email is already in use. 
+
+In case that something goes wrong with te data base and you user was not created then you'll get the following message:
+"There was a problem creating your user"
 
 **Success**:
 
@@ -98,6 +110,17 @@ Backend made with Express.
     "password" String
 }
 ```
+**Posible errors**: 
+
+**400**
+
+if any of the two elements is missing or the info doesn't match the regex
+
+**409**
+
+If there is not an account with the username that was given. 
+
+If the password doesn't match the one that is linked to the username
 
 **Success**:
 
@@ -117,6 +140,22 @@ Backend made with Express.
 **route**: /api/user/favorites
 
 **Athorization Bearer Token**: jwt
+
+**Posible errors**: 
+
+**400**
+
+if you don't have a bearer token
+
+**401**
+
+If your bearer token has expired
+
+**409**
+
+This shouldn't since there is no reason for the token to be modifed but:
+
+If the id of the user is incorrect you'll get "User not found"
 
 **Success**:
 
@@ -138,7 +177,7 @@ Backend made with Express.
 }
 ```
 
-### Add one comic to a user's favorite comics
+### Add comics to a user's favorite comics
 
 **method**: POST
 
@@ -148,16 +187,37 @@ Backend made with Express.
 
 **Body**:
 ```json
+
 {
-    "title": String,
-    "description": String,
-    "image": String,
-    "publish": String,
-    "coverArtist": String,
-    "penciler": String,
-    "writer": String
+    "fav":[
+        "title": String,
+        "description": String,
+        "image": String,
+        "publish": String,
+        "coverArtist": String,
+        "penciler": String,
+        "writer": String
+    ] 
 }
 ```
+
+**Posible errors**: 
+
+**400**
+
+if you don't have a bearer token
+
+**401**
+
+If your bearer token has expired
+
+**409**
+
+If one of the comics that you are trying to add has the same title as one that is already in your list of favorites
+
+This shouldn't since there is no reason for the token to be modifed but:
+
+If the id of the user is incorrect you'll get "User not found"
 
 **Succes**:
 
@@ -197,10 +257,25 @@ Backend made with Express.
 
 **Athorization Bearer Token**: jwt
 
-**Param**: heroname = String
+**Param**: heroname = String, numberComics = Number, offset = Number default: 0
+
+**Posible errors**: 
+
+**400**
+
+if you don't have a bearer token
+
+**401**
+
+If your bearer token has expired
+
+**409**
+
+If the name of the hero you gave doesn't match any on marvel's api
+
+**Success**
 
 **Status code**: 200
-
 
 ```json
 {
@@ -221,7 +296,8 @@ Backend made with Express.
             "penciler": String,
             "writer": String
             },
-]
+    ],
+    "offset": Number
 }
 ```
 
@@ -254,6 +330,6 @@ Backend made with Express.
 }
 ```
 
-# Authors
+# Author
 
   - **Jorge Alberto Delgadilo Alonso** 

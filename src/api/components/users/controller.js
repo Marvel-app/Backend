@@ -5,7 +5,7 @@ const token = require("../../../utils/createJwt")
 class Controller{
 
     constructor(){
-        this.store = new userStore()
+        this.store = new userStore
     }
 
     async createUser(user){
@@ -22,7 +22,7 @@ class Controller{
         
         const validateUserName = await this.store.validateUserByName({username: userName})
         if(validateUserName) throw boom.conflict("A user with this username already exists");
-        
+        console.log(validateUserName)
         const validateUserEmail =  await this.store.validateUserByEmail({email: userEmail})
         if(validateUserEmail) throw boom.conflict("A user with this email already exists");
 
@@ -56,7 +56,7 @@ class Controller{
 
     }
 
-    async getFavorites(userData){
+    async   getFavorites(userData){
         const validateUserID = await this.store.validateUserByID({_id: userData.sub})
         if(!validateUserID) throw boom.conflict("User not found");
 
@@ -73,12 +73,17 @@ class Controller{
         const userComp = await this.store.getUserByID(_id)
 
         userComp.favs.forEach(element => {
-            if(element.title === fav.title){
-                throw boom.conflict("This comic is already in your favorites"); 
-            }
+            fav.forEach(entry => {
+                if(element.title === entry.title){
+                    throw boom.conflict("This comic is already in your favorites"); 
+                }
+            });
         });
 
-        userComp.favs.push(fav)
+        fav.forEach(element => {
+            userComp.favs.push(element)
+        });
+        
 
         if(userComp.password){
 

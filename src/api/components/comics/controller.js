@@ -4,7 +4,7 @@ const { config } = require('../../../config/index');
 class Controller{
     constructor(){}
 
-    async getComicsByName(heroname,numberComics){
+    async getComicsByName(heroname,numberComics,offset = 0){
         const limit = parseInt(numberComics)
         const response = await axios.get(`https://gateway.marvel.com:443/v1/public/characters?name=${heroname}&${config.CREDENTIALS}`)
         if(response.data.data.results.length === 0) throw boom.conflict('It was impossible to find a hero with that name');
@@ -19,7 +19,7 @@ class Controller{
             heroImage
         }
 
-        const comics = await axios.get(`https://gateway.marvel.com:443/v1/public/characters/${superheroID}/comics?format=comic&limit=${limit}&${config.CREDENTIALS}`)
+        const comics = await axios.get(`https://gateway.marvel.com:443/v1/public/characters/${superheroID}/comics?format=comic&limit=${limit}&offset=${offset}&${config.CREDENTIALS}`)
 
         const comicsPrueba = comics.data.data.results
 
@@ -68,7 +68,8 @@ class Controller{
 
         const data = {
             heroInfo,
-            comicsArray
+            comicsArray,
+            offset
         }
 
         return data
