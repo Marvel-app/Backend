@@ -55,6 +55,19 @@ router.post('/favorites',checkJWT, async (req, res, next) => {
     }
 })
 
+router.delete('/favorites',checkJWT, async (req, res, next) => {
+    try {
+        const _id = req.userData.sub;
+        const fav = req.body.fav;
+        const update = await Controller.deleteFavorites(_id,fav)
+        res.status(200).json({
+            update
+        });
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.get('/refresh',refreshJWT, async (req, res, next) => {
     try {
         const { userData } = req;

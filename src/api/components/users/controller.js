@@ -83,7 +83,6 @@ class Controller{
         fav.forEach(element => {
             userComp.favs.push(element)
         });
-        
 
         if(userComp.password){
 
@@ -105,6 +104,48 @@ class Controller{
             }
             const added = await this.store.updateUser({_id: userComp._id },updatedUser)
             return added
+
+        }
+        
+        
+
+    }
+
+    async deleteFavorites(_id,fav){
+        
+        if(fav.length === 0)throw boom.conflict("You didn't send any comics to be removed"); 
+        const validateUserID = await this.store.validateUserByID({_id: _id})
+        if(!validateUserID) throw boom.conflict("User not found");
+
+        const userComp = await this.store.getUserByID(_id)
+
+
+            fav.forEach(entry => {
+                userComp.favs = userComp.favs.filter(e => e.title !== entry.title)
+            });
+
+        if(userComp.password){
+
+            let updatedUser = {
+                username: userComp.username,
+                email: userComp.email,
+                password: userComp.password,
+                favs: userComp.favs
+            }
+            const update = await this.store.updateUser({_id: userComp._id },updatedUser)
+            if(!update) throw boom.conflict("Somethong went worng while updating your profile"); 
+            return "Comic removed"
+
+        } else {
+
+            let updatedUser = {
+                username: userComp.username,
+                email: userComp.email,
+                favs: userComp.favs
+            }
+            const update = await this.store.updateUser({_id: userComp._id },updatedUser)
+            if(!update) throw boom.conflict("Somethong went worng while updating your profile"); 
+            return "Comic removed"
 
         }
         

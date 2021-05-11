@@ -229,6 +229,63 @@ If the id of the user is incorrect you'll get "User not found"
 }
 ```
 
+### Remove comics to a user's favorite comics
+
+**method**: DELETE
+
+**route**: /api/user/favorites
+
+**Athorization Bearer Token**: jwt
+
+**Body**:
+```json
+
+{
+    "fav":[
+        {
+        "title": String,
+        "description": String,
+        "image": String,
+        "publish": String,
+        "coverArtist": String,
+        "penciler": String,
+        "writer": String
+        }
+        
+    ] 
+}
+```
+
+**Posible errors**: 
+
+**400**
+
+if you don't have a bearer token
+
+**401**
+
+If your bearer token has expired
+
+**409**
+
+If the comic list that is supposed to be removed is empty
+
+If one of the comics that you are trying to add has the same title as one that is already in your list of favorites
+
+This shouldn't since there is no reason for the token to be modifed but:
+
+If the id of the user is incorrect you'll get "User not found"
+
+**Succes**:
+
+**Status code**: 200
+
+```json
+{
+	"Message": "Comic removed"
+}
+```
+
 ## auth
 
 ### Both loggin and Sign up
